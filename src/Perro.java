@@ -1,7 +1,7 @@
 /*
 Archivo: Perro.java
 Descripcion:
-Clase hija que hereda de Mascota.
+Clase hija que hereda de Animal.
 Representa a un perro dentro del sistema
 */
 

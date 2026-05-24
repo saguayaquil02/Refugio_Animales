@@ -1,7 +1,7 @@
 /*
 Archivo: Gato.java
 Descripcion:
-Clase hija que hereda de Mascota.
+Clase hija que hereda de Animal.
 Representa a un gato dentro del sistema
 */
 
