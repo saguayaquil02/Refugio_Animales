@@ -37,4 +37,89 @@ public class App {
             System.out.println("7. Salir");
             System.out.print("Seleccione una opcion: ");
 
+            // Manejo básico de excepciones con try/catch
+            try {
+                // nextInt espera un número de forma estricta. Si el usuario escribe una letra, el Scanner se bloquea y lanza una excepción
+                opcion = scanner.nextInt();
+                // nextLine limpiar salto de línea restante para que el buffer quede vacío
+                scanner.nextLine(); // Limpiar buffer del scanner
+
+                switch (opcion) {
+                    // caso 1 se deja pasar por que esta vacio
+                    case 1: // Opción 1 (Perro) y Opción 2 (Gato) comparten la misma captura de datos
+                    // Se resgitra el animal perro o gato
+                    case 2:
+                        System.out.println("\n-- Registrar Animal --");
+                        System.out.print("Ingrese ID: ");
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+
+                        System.out.print("Ingrese Nombre: ");
+                        String nombre = scanner.nextLine();
+
+                        System.out.print("Ingrese Edad: ");
+                        int edad = scanner.nextInt();
+                        scanner.nextLine();
+
+                        // Validaciones (edad no negativa, etc.)
+                        if (id <= 0 || edad < 0 || nombre.trim().isEmpty()) {
+                            System.out.println("Error: Datos invalidos. El ID debe ser > 0, edad >= 0 y nombre no puede estar vacio");
+                        } else {
+                            if (opcion == 1) {
+                                miRefugio.registrarAnimal(new Perro(id, nombre, edad));
+                            } else {
+                                miRefugio.registrarAnimal(new Gato(id, nombre, edad));
+                            }
+                        }
+                        break;
+                    case 3:
+                        miRefugio.mostrarAnimales();
+                        break;
+
+                    case 4:
+                        System.out.print("\nIngrese el ID a buscar: ");
+                        int idBusqueda = scanner.nextInt();
+                        Animal encontrado = miRefugio.buscarAnimalPorId(idBusqueda);
+                        
+                        // Controlar que el id buscado exista
+                        if (encontrado != null) {
+                            System.out.println("\nAnimal encontrado");
+                            encontrado.mostrarInfo();
+                        } else {
+                            System.out.println("No se encontro ningun animal con ese ID en el refugio");
+                        }
+                        break;
+
+                    case 5:
+                        System.out.print("\nIngrese el ID del animal para cambiar su estado: ");
+                        int idEstado = scanner.nextInt();
+                        miRefugio.cambiarEstadoAnimal(idEstado);
+                        break;
+
+                    case 6:
+                        System.out.print("\nIngrese el ID del animal para ejecutar su accion: ");
+                        int idAccion = scanner.nextInt();
+                        miRefugio.ejecutarAccionEspecifica(idAccion);
+                        break;
+
+                    case 7:
+                        System.out.println("Saliendo del sistema del refugio...");
+                        break;
+
+                    default:
+                        // REQUERIMIENTO: no aceptar opciones inválidas del menú
+                        System.out.println("Opcion no valida. Por favor, seleccione un numero del 1 al 7");
+                }
+
+            } catch (InputMismatchException e) {
+                // REQUERIMIENTO: Capturar errores al ingresar números en el menú
+                System.out.println("Error de sistema: Entrada invalida. Debe ingresar un numero entero");
+                scanner.nextLine(); // Limpiamos el buffer para que no se forme un bucle infinito
+            }
+
+        } while (opcion != 7);
+
+        scanner.close(); // esto cierra el scanner
+
+    }
 }
