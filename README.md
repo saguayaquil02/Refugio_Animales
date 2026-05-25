@@ -8,7 +8,7 @@ El programa simula el funcionamiento interno de un refugio mediante una arquitec
 
 ## Información del Estudiante
 * **Bootcamp:** Programación Cero a POO
-* **Modalidad:** Individual
+* Proyecto desarrollado por Sebastian Guayaquil
 
 ### Conceptos Clave de POO Implementados:
 1. **Encapsulamiento:** Todos los atributos de las entidades se definieron con el modificador de acceso `private`, protegiendo la integridad de los datos y permitiendo su lectura/escritura controlada mediante métodos públicos *Getters y Setters*.
